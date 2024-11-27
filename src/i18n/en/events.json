@@ -1,3 +1,6 @@
 {
-    "HELLO": "Hello"
+    "HELLO": "Hello",
+    "NOT_FOUND": "User with id={id} does not found",
+    "EXISTS_EMAIL": "Email Already Exist",
+    "SUCCESS_DELETE": "User With Id={id} has been deleted successfully"
 }

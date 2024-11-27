@@ -20,7 +20,7 @@ export class UsersService {
       email: createUserDto.email
     })
     if (findUser) {
-      throw new HttpException('Email Already Exist', 409)
+      throw new HttpException(this.i18n.translate('events.EXISTS_EMAIL'), 409)
     }
     const createUser = await this.userModel.create(createUserDto)
     return createUser
@@ -33,7 +33,7 @@ export class UsersService {
   async findOne(id: string): Promise<User> {
     const findUser = await this.userModel.findById(id)
     if (!findUser) {
-      throw new HttpException(`User with id=${id} does not found`, 404)
+      throw new HttpException(this.i18n.translate("events.NOT_FOUND", { args: { id } }), 404)
     }
     return findUser
   }
@@ -41,7 +41,7 @@ export class UsersService {
   async update(id: string, updateUserDto: UpdateUserDto): Promise<User> {
     const findUser = await this.userModel.findById(id)
     if (!findUser) {
-      throw new HttpException(`User with id=${id} does not found`, 404)
+      throw new HttpException(this.i18n.translate("events.NOT_FOUND", { args: { id } }), 404)
     }
     const updateUser = await this.userModel.findByIdAndUpdate(id, {
       ...updateUserDto
@@ -52,10 +52,10 @@ export class UsersService {
   async remove(id: string) {
     const findUser = await this.userModel.findById(id)
     if (!findUser) {
-      throw new HttpException(`User with id=${id} does not found`, 404)
+      throw new HttpException(this.i18n.translate("events.NOT_FOUND", { args: { id } }), 404)
     }
 
     const deleteUser = await this.userModel.findByIdAndDelete(id)
-    return `User With Id=${id} has been deleted successfully` 
+    return `User With Id=${id} has been deleted successfully`
   }
 }
