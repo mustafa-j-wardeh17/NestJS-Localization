@@ -1,11 +1,15 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { AcceptLanguageResolver, CookieResolver, HeaderResolver, I18nModule, QueryResolver } from 'nestjs-i18n';
+import { UsersModule } from './users/users.module';
 import * as path from 'path';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
   imports: [
+    MongooseModule.forRoot('mongodb://admin:adminpassword@localhost:27017', {
+      dbName: 'nest_main',
+      autoCreate: true
+    }),
     I18nModule.forRoot({
       fallbackLanguage: 'en', // default language
       loaderOptions: {
@@ -24,8 +28,9 @@ import * as path from 'path';
         new CookieResolver(),
       ],
     }),
+    UsersModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule { }
