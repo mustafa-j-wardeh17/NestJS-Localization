@@ -11,7 +11,7 @@ import { MongooseModule } from '@nestjs/mongoose';
       autoCreate: true
     }),
     I18nModule.forRoot({
-      fallbackLanguage: 'en', // default language
+      fallbackLanguage: 'ar', // default language
       loaderOptions: {
         path: path.join(__dirname, '/i18n/'),
         watch: true,

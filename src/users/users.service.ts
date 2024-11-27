@@ -2,7 +2,7 @@ import { HttpException, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectModel } from '@nestjs/mongoose';
-import { User, UserDocument } from './entities/user.entity';
+import { User, UserDocument } from './entities/user.model';
 import { Model } from 'mongoose';
 import { CustomI18n } from 'src/util/i18nMiddleware';
 

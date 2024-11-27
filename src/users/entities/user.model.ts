@@ -5,15 +5,12 @@ import { Document } from "mongoose";
 @Schema()
 export class User {
     @Prop()
-    @IsAlpha()
     username: string;
 
     @Prop({ unique: true })
-    @IsEmail()
     email: string;
 
     @Prop()
-    @IsStrongPassword()
     password: string;
 
     @Prop()
@@ -21,6 +18,9 @@ export class User {
 
     @Prop()
     country: string;
+
+    @Prop()
+    age:number
 }
 
 export type UserDocument = User & Document

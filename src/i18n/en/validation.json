@@ -1,1 +1,11 @@
-{}
+{
+    "EMAIL_NOT_FORMATTED": "The email address is not formatted correctly.",
+    "USERNAME_LENGTH": "The username must be between {min} and {max} characters long.",
+    "EMPTY": "This field cannot be left empty.",
+    "PASSWORD": "The password must be strong and secure.",
+    "ADDRESS": "The address must be a valid string.",
+    "COUNTRY": "The country name must be a valid string.",
+    "AGE_NUMBER": "Age must be a numeric value.",
+    "AGE_CONTRAINS_MIN": "Age must be at least {min} years.",
+    "AGE_CONTRAINS_MAX": "Age must not exceed {max} years."
+}
