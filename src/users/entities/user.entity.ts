@@ -8,7 +8,7 @@ export class User {
     @IsAlpha()
     username: string;
 
-    @Prop()
+    @Prop({ unique: true })
     @IsEmail()
     email: string;
 

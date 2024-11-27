@@ -5,7 +5,7 @@ import { I18nContext, I18nService } from "nestjs-i18n";
 export class CustomI18n {
     constructor(private readonly i18n: I18nService) { }
 
-    translate(key, options) {
+    translate(key: string, options?: any) {
         const lang = I18nContext.current().lang
         return this.i18n.t(key, { lang, ...options })
     }
