@@ -14,12 +14,25 @@ export class User {
     @Prop()
     password: string;
 
-    @Prop()
+    @Prop({
+        i18n: true
+    })
     address: string;
+    // in db it will be like this
+    // address:{
+    //     en:"",
+    //     ar:""
+    // }
 
-    @Prop()
+    @Prop({
+        i18n: true
+    })
     country: string;
-
+    // in db it will be like this
+    // country:{
+    //     en:"",
+    //     ar:""
+    // }
     @Prop()
     age: number
 }
