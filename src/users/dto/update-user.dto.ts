@@ -1,4 +1,4 @@
-import {IsEmail, IsNumber, IsOptional, IsString, IsStrongPassword, Length, Max, Min } from "class-validator";
+import { IsDefined, IsEmail, IsNumber, IsOptional, IsString, IsStrongPassword, Length, Max, Min } from "class-validator";
 import { i18nValidationMessage } from "nestjs-i18n";
 
 export class UpdateUserDto {
@@ -15,12 +15,13 @@ export class UpdateUserDto {
     @IsStrongPassword({}, { message: i18nValidationMessage('validation.PASSWORD') })
     password?: string;
 
+    //@IsString({ message: i18nValidationMessage('validation.ADDRESS') })
     @IsOptional()
-    @IsString({ message: i18nValidationMessage('validation.ADDRESS') })
+
     address?: string;
 
+    //@IsString({ message: i18nValidationMessage('validation.COUNTRY') })
     @IsOptional()
-    @IsString({ message: i18nValidationMessage('validation.COUNTRY') })
     country?: string;
 
     @IsOptional()

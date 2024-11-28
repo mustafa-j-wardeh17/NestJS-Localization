@@ -5,6 +5,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { User, UserDocument } from './entities/user.model';
 import { Model } from 'mongoose';
 import { CustomI18n } from 'src/util/i18nMiddleware';
+import { I18nContext } from 'nestjs-i18n';
 
 @Injectable()
 export class UsersService {
@@ -27,7 +28,26 @@ export class UsersService {
   }
 
   async findAll(): Promise<User[]> {
-    return await this.userModel.find()
+    const users = await this.userModel.find()
+    // const localizedUsers = this.userModel.schema.methods.toJSONLocalized(
+    //   users,
+    //   'en'
+    // );
+    // add new localized property to object of localized property like address
+    // "address": {
+    //         "en": "Hebron",
+    //         "ar": "الخليل",
+    //         "localized": "Hebron"
+    //     },
+
+    const localizedUsers = this.userModel.schema.methods.toObjectLocalizedOnly(
+      users,
+      I18nContext.current().lang // return current language
+    );
+    // return the localized data only like this
+    // "address": "Hebron"
+
+    return localizedUsers
   }
 
   async findOne(id: string): Promise<User> {
@@ -35,7 +55,11 @@ export class UsersService {
     if (!findUser) {
       throw new HttpException(this.i18n.translate("events.NOT_FOUND", { args: { id } }), 404)
     }
-    return findUser
+    const localizedUser = this.userModel.schema.methods.toObjectLocalizedOnly(
+      findUser,
+      I18nContext.current().lang
+    )
+    return localizedUser
   }
 
   async update(id: string, updateUserDto: UpdateUserDto): Promise<User> {
@@ -46,7 +70,12 @@ export class UsersService {
     const updateUser = await this.userModel.findByIdAndUpdate(id, {
       ...updateUserDto
     })
-    return await this.userModel.findById(id);
+    const user = await this.userModel.findById(id);
+    const localizedUser = this.userModel.schema.methods.toObjectLocalizedOnly(
+      user,
+      I18nContext.current().lang
+    )
+    return localizedUser
   }
 
   async remove(id: string) {
