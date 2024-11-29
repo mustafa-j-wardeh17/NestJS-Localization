@@ -95,7 +95,7 @@ throw new HttpException(this.i18n.t('events.EXISTS_EMAIL', { lang: I18nContext.c
 ```
 You can simplify it:
 ```typescript
-throw new HttpException(this.i18n.t('events.EXISTS_EMAIL', { lang: I18nContext.current().lang }), 409);
+throw new HttpException(this.i18n.t('events.EXISTS_EMAIL'), 409);
 ```
 ---
 ### Use Cases for Localization
